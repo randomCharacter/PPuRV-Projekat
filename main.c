@@ -19,7 +19,7 @@ int main()
 
 	for (int i = 0; i < 20; i++)
 	{
-		j = rand() % 100 + 1;
+		int j = rand() % 100 + 1;
 		heap_add(&heap, &j);
 		heap_print(&heap);
 		printf("\n");
