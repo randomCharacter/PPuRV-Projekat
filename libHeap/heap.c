@@ -1,4 +1,5 @@
 #include "heap.h"
+
 /***************************************************************
  *    Razmenjuje vrednosti na lokcaijama x i y, dužine size.   *
  * x: prva lokacija sa koje se vrednost menja                  *
@@ -22,16 +23,34 @@ static uint8_t swap(void* x, void* y, size_t size)
 	return 1;
 }
 
+/***************************************************************
+ *           Za zadati indeks vraća indeks roditelja           *
+ * i: indeks čiji se roditelj traži                            *
+ *                                                             *
+ * vraća indeks roditelja                                      *
+ ***************************************************************/
 static inline size_t parent(size_t i)
 {
 	return (i - 1) / 2;
 }
 
+/***************************************************************
+ *               Za zadati indeks vraća levo dete              *
+ * i: indeks čije se levo dete traži                           *
+ *                                                             *
+ * vraća indeks levog deteta                                   *
+ ***************************************************************/
 static inline size_t left(size_t i)
 {
 	return 2 * i + 1;
 }
 
+/***************************************************************
+ *              Za zadati indeks vraća desno dete              *
+ * i: indeks čije se desno dete traži                          *
+ *                                                             *
+ * vraća indeks desnog deteta                                  *
+ ***************************************************************/
 static inline size_t right(size_t i)
 {
 	return 2 * i + 2;
@@ -103,12 +122,9 @@ uint8_t heap_add(heap_t* heap, void* value)
 	size_t i = heap->elem_no - 1;
 	memcpy((char*) heap->array + i * heap->elem_size, value, heap->elem_size);
 
-	//printf("index[i]=%ld\n  value=%di=%d parent(i)=%d\n", i, *(int*)value, *(int*)((char*) heap->array + i * heap->elem_size), *(int*)((char*) heap->array + parent(i) * heap->elem_size));
-
 	while(i != 0 && heap->cmp((char*) heap->array + parent(i) * heap->elem_size, (char*) heap->array + i * heap->elem_size) > 0)
 	{
-		//printf("PETLJA:index[i]=%ld\nvalue=%d i=%d parent(i)=%d\n", i, *(int*)value, *((int*) heap->array + i), *((int*) heap->array + parent(i)));
-    	swap(heap->array + i * heap->elem_size, heap->array + parent(i) * heap->elem_size, heap->elem_size);
+		swap(heap->array + i * heap->elem_size, heap->array + parent(i) * heap->elem_size, heap->elem_size);
 		i = parent(i);
 	}
 	return 1;
