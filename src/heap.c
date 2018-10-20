@@ -62,6 +62,8 @@ static inline size_t right(size_t i)
  * heap: adresa heap strukture u koju treba dodati vrednost    *
  * elem_size: veličina jednog elementa u strukturi             *
  * elem_no: maksimalan broj elemenata koje hip treba da podrži *
+ * cmp: funkcija koja poredi 2 elementa heap-a                 *
+ * print: funkcija koja ispisuje jedan element heap-a          *
  ***************************************************************/
 void heap_init(heap_t* heap, size_t elem_size, size_t elem_no, int (*cmp) (const void *, const void*), void (*print) (const void *))
 {
@@ -217,4 +219,28 @@ void heap_destroy(heap_t* heap)
 	heap->elem_size = 0;
 	heap->cmp = NULL;
 	heap->print = NULL;
+}
+
+/***************************************************************
+ *           Kreira hip na osnovu prosleđenog niza.            *
+ *                                                             *
+ * heap: adresa heap strukture koja se briše                   *
+ * elem_no: broj elemenata u nizu                              *
+ * size: veličina jednog elementa u nizu                       *
+ * cmp: funkcija koja poredi 2 elementa heap-a                 *
+ * print: funkcija koja ispisuje jedan element heap-a          *
+ *                                                             *
+ * vraća novokreiranu strukturu heap_t                         *
+ ***************************************************************/
+heap_t heap_from_array(void* array, size_t elem_no, size_t size, int (*cmp) (const void *, const void*), void (*print) (const void *))
+{
+	heap_t heap;
+	size_t i;
+	heap_init(&heap, size, elem_no, cmp, print);
+	for (i = 0; i < elem_no; i++)
+	{
+		heap_add(&heap, array + i * size);
+	}
+
+	return heap;
 }
