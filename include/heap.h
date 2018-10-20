@@ -22,3 +22,4 @@ uint8_t heap_remove(heap_t* heap, void* value);
 void heapify(heap_t* heap, size_t pos);
 void heap_print(heap_t* heap);
 void heap_destroy(heap_t *heap);
+heap_t heap_from_array(void* array, size_t elem_no, size_t size, int (*cmp) (const void *, const void*), void (*print) (const void *));

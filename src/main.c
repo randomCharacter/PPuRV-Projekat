@@ -59,13 +59,8 @@ int main()
 
 void heap_sort_string(char array[][MAX_STRING_SIZE], int n)
 {
-	heap_t heap;
+	heap_t heap = heap_from_array(array, n, MAX_STRING_SIZE, cmp_string, print_string);
 	int i;
-	heap_init(&heap, sizeof(char) * MAX_STRING_SIZE, n, cmp_string, print_string);
-	for (i = 0; i < n; i++)
-	{
-		heap_add(&heap, &array[i]);
-	}
 	for (i = 0; i < n; i++)
 	{
 		heap_extract_min(&heap, &array[i]);
@@ -75,15 +70,9 @@ void heap_sort_string(char array[][MAX_STRING_SIZE], int n)
 
 void heap_sort_int(int array[], int n)
 {
-	heap_t heap;
+	heap_t heap = heap_from_array(array, n, sizeof(int), cmp, print);
 	int i;
-	heap_init(&heap, sizeof(int), n, cmp, print);
 	for (i = 0; i < n; i++)
-	{
-		heap_add(&heap, &array[i]);
-	}
-	int a=2;
-	for (i = 0; i < n-1; i++)
 	{
 		heap_extract_min(&heap, &array[i]);
 	}
