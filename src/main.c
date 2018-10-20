@@ -57,6 +57,12 @@ int main()
 	return 0;
 }
 
+/**********************************************************************
+ *  Funkcija za sortiranje niza stringova pomoću heap sort algoritma  *
+ *                                                                    *
+ * array: niy koji se sortira                                         *
+ * n: veličina niza koji se sortira                                   *
+ **********************************************************************/
 void heap_sort_string(char array[][MAX_STRING_SIZE], int n)
 {
 	heap_t heap = heap_from_array(array, n, MAX_STRING_SIZE, cmp_string, print_string);
@@ -68,6 +74,12 @@ void heap_sort_string(char array[][MAX_STRING_SIZE], int n)
 	heap_destroy(&heap);
 }
 
+/**********************************************************************
+ * Funkcija za sortiranje celobrojnog niza pomoću heap sort algoritma *
+ *                                                                    *
+ * array: niy koji se sortira                                         *
+ * n: veličina niza koji se sortira                                   *
+ **********************************************************************/
 void heap_sort_int(int array[], int n)
 {
 	heap_t heap = heap_from_array(array, n, sizeof(int), cmp, print);
@@ -79,21 +91,49 @@ void heap_sort_int(int array[], int n)
 	heap_destroy(&heap);
 }
 
+/**********************************************************************
+ *                 Funkcija za poređenje 2 cela broja                 *
+ *                                                                    *
+ * a: adresa prvog celog broja koji se poredi                         *
+ * b: adresa drugog celog broja koji se poredi                        *
+ *                                                                    *
+ * vraća 0 ako su jenaki, pozitivan broj ako je prvi veći, negativan  *
+ * broj inače                                                         *
+ **********************************************************************/
 int cmp(const void* a, const void* b)
 {
 	return *((int*) a) - *((int*) b);
 }
 
+/**********************************************************************
+ *                 Funkcija za štampanje celog broja                  *
+ *                                                                    *
+ * x: adresa celog broja koji se štampa                               *
+ **********************************************************************/
 void print(const void* x)
 {
 	printf("%d ", *(int*)x);
 }
 
+/**********************************************************************
+ *                   Funkcija za štampanje stringa                    *
+ *                                                                    *
+ * x: adresa stringa koji se štampa                                   *
+ **********************************************************************/
 void print_string(const void *x)
 {
 	puts(x);
 }
 
+/**********************************************************************
+ *                  Funkcija za poređenje 2 stringa                   *
+ *                                                                    *
+ * a: adresa prvog stringa koji se poredi                             *
+ * b: adresa drugog stringa koji se poredi                            *
+ *                                                                    *
+ * vraća 0 ako su jenaki, pozitivan broj ako je prvi veći, negativan  *
+ * broj inače                                                         *
+ **********************************************************************/
 int cmp_string(const void* a, const void *b)
 {
 	return strcmp(a, b);
