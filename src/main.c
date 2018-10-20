@@ -8,6 +8,8 @@ int cmp(const void* a, const void* b);
 void print(const void* x);
 void heap_sort_int(int array[], int n);
 void heap_sort_string(char array[][MAX_STRING_SIZE], int n);
+void print_string(const void *x);
+int cmp_string(const void* a, const void *b);
 
 int main()
 {
@@ -59,7 +61,7 @@ void heap_sort_string(char array[][MAX_STRING_SIZE], int n)
 {
 	heap_t heap;
 	int i;
-	heap_init(&heap, sizeof(char) * MAX_STRING_SIZE, n, strcmp, puts);
+	heap_init(&heap, sizeof(char) * MAX_STRING_SIZE, n, cmp_string, print_string);
 	for (i = 0; i < n; i++)
 	{
 		heap_add(&heap, &array[i]);
@@ -80,7 +82,8 @@ void heap_sort_int(int array[], int n)
 	{
 		heap_add(&heap, &array[i]);
 	}
-	for (i = 0; i < n; i++)
+	int a=2;
+	for (i = 0; i < n-1; i++)
 	{
 		heap_extract_min(&heap, &array[i]);
 	}
@@ -95,4 +98,14 @@ int cmp(const void* a, const void* b)
 void print(const void* x)
 {
 	printf("%d ", *(int*)x);
+}
+
+void print_string(const void *x)
+{
+	puts(x);
+}
+
+int cmp_string(const void* a, const void *b)
+{
+	return strcmp(a, b);
 }

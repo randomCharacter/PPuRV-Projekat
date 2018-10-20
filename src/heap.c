@@ -62,7 +62,6 @@ static inline size_t right(size_t i)
  * heap: adresa heap strukture u koju treba dodati vrednost    *
  * elem_size: veličina jednog elementa u strukturi             *
  * elem_no: maksimalan broj elemenata koje hip treba da podrži *
- *                                                             *
  ***************************************************************/
 void heap_init(heap_t* heap, size_t elem_size, size_t elem_no, int (*cmp) (const void *, const void*), void (*print) (const void *))
 {
@@ -140,7 +139,26 @@ uint8_t heap_add(heap_t* heap, void* value)
  ***************************************************************/
 uint8_t heap_remove(heap_t* heap, void* value)
 {
-	// TODO: Implement
+	if (heap->elem_no <= 0)
+	{
+		return 0;
+	}
+	size_t i = 0;
+	while (i < heap->elem_no)
+	{
+		if (heap->cmp((char*) heap->array + i * heap->elem_size, value) == 0)
+		{
+			swap((char*) heap->array + i * heap->elem_size, (char*) heap->array + (heap->elem_no - 1) * heap->elem_size, heap->elem_size);
+			heap->elem_no--;
+
+			heapify(heap, i);
+
+			return 1;
+		}
+		i++;
+	}
+
+	return 0;
 }
 
 /***************************************************************
