@@ -18,13 +18,13 @@ int main()
 	int int_array[INT_ARRAY_SIZE] = { 5, 10, 3, 8, 4, 1, 2, 9, 6, 7 };
 	char string_array[STRING_ARRAY_SIZE][MAX_STRING_SIZE] = { "petar", "marko", "zika", "lazar", "radojica", "zivojin" };
 
-	printf("Nesortirani nizovi:\n\n");
+	printf("Nesortirani nizovi:\n");
 	printf("Celi brojevi:\n");
 	for (i = 0; i < INT_ARRAY_SIZE; i++)
 	{
 		printf("%d ", int_array[i]);
 	}
-	printf("\n");
+	printf("\n\n");
 
 
 	printf("Stringovi:\n");
@@ -32,19 +32,19 @@ int main()
 	{
 		printf("%s ", string_array[i]);
 	}
-	printf("\n");
+	printf("\n\n");
 
 	printf("Sortiranje...\n\n");
 	heap_sort_int(int_array, INT_ARRAY_SIZE);
 	heap_sort_string(string_array, STRING_ARRAY_SIZE);
 
-
+	printf("Sortirani nizovi:\n");
 	printf("Celi brojevi:\n");
 	for (i = 0; i < INT_ARRAY_SIZE; i++)
 	{
 		printf("%d ", int_array[i]);
 	}
-	printf("\n");
+	printf("\n\n");
 
 
 	printf("Stringovi:\n");
@@ -52,7 +52,7 @@ int main()
 	{
 		printf("%s ", string_array[i]);
 	}
-	printf("\n");
+	printf("\n\n");
 
 	return 0;
 }
