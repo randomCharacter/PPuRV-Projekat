@@ -97,7 +97,7 @@ uint8_t heap_extract_min(heap_t* heap, void* min)
 	}
 
 	memcpy(min, heap->array, heap->elem_size);
-	memcpy(heap->array, ((char*) heap->array) + (heap->elem_no - 1) * heap->elem_size, heap->elem_size);
+	memcpy(heap->array, (char*) heap->array + (heap->elem_no - 1) * heap->elem_size, heap->elem_size);
 	heap->elem_no--;
 	heapify(heap, 0);
 
@@ -154,11 +154,11 @@ void heapify(heap_t* heap, size_t pos)
 	size_t l = left(pos);
 	size_t r = right(pos);
 	size_t smallest = pos;
-	if (l < heap->elem_no && heap->cmp((char*) heap->array + l * heap->elem_size, (char*) heap->array + pos * heap->elem_size) < 0)
+	if (l < heap->elem_no && heap->cmp((char*) heap->array + l * heap->elem_size, (char*) heap->array + smallest * heap->elem_size) < 0)
 	{
 		smallest = l;
 	}
-	if (r < heap->elem_no && heap->cmp((char*) heap->array + r * heap->elem_size, (char*) heap->array + pos * heap->elem_size) < 0)
+	if (r < heap->elem_no && heap->cmp((char*) heap->array + r * heap->elem_size, (char*) heap->array + smallest * heap->elem_size) < 0)
 	{
 		smallest = r;
 	}
@@ -180,7 +180,7 @@ void heap_print(heap_t* heap)
 {
 	size_t i;
 	char* values = ((char*) heap->array);
-	for (i = 0; i < heap->max_elem_no; i++, values += heap->elem_size)
+	for (i = 0; i < heap->elem_no; i++, values += heap->elem_size)
 	{
 		heap->print(values);
 	}

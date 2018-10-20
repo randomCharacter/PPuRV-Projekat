@@ -4,7 +4,7 @@ build:
 	mkdir -p build
 
 src/heap:
-	gcc -c -Iinclude src/heap.c -o build/libHeap.o
+	gcc -c -Iinclude src/heap.c -o build/libHeap.o -Wall
 
 lib: src/heap build
 	mkdir -p lib
@@ -12,7 +12,7 @@ lib: src/heap build
 	rm -f build/libHeap.o
 
 main: build
-	gcc --static -Iinclude -Llib -o build/main src/main.c -lHeap
+	gcc --static -Iinclude -Llib -o build/main src/main.c -lHeap -Wall
 
 clean:
 	rm -f build/heap lib/libHeap.a
