@@ -1,18 +1,23 @@
+CC=gcc
+LDIR=lib
+IDIR=include
+BDIR=build
+
 all: lib main
 
 build:
-	mkdir -p build
+	mkdir -p $(BDIR)
 
 heap:
-	gcc -c -Iinclude src/heap.c -o build/libHeap.o -Wall
+	$(CC) -c -I$(IDIR) src/heap.c -o $(BDIR)/libHeap.o -Wall
 
 lib: heap build
-	mkdir -p lib
-	ar rs lib/libHeap.a build/libHeap.o
-	rm -f build/libHeap.o
+	mkdir -p $(LDIR)
+	ar rs $(LDIR)/libHeap.a $(BDIR)/libHeap.o
+	rm -f $(BDIR)/libHeap.o
 
 main: build
-	gcc --static -Iinclude -Llib -o build/main src/main.c -lHeap -Wall
+	$(CC) --static -I$(IDIR) -L$(LDIR) -o $(BDIR)/main src/main.c -lHeap -Wall
 
 clean:
-	rm -f build/heap lib/libHeap.a
+	rm -f $(BDIR)/heap $(LDIR)/libHeap.a
