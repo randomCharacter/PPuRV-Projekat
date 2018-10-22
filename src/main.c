@@ -4,18 +4,18 @@
 #define INT_ARRAY_SIZE 10
 #define STRING_ARRAY_SIZE 6
 
-int cmp(const void* a, const void* b);
+signed int cmp(const void* a, const void* b);
 void print(const void* x);
 void heap_sort_int(int array[], int n);
 void heap_sort_string(char array[][MAX_STRING_SIZE], int n);
 void print_string(const void *x);
-int cmp_string(const void* a, const void *b);
+signed int cmp_string(const void* a, const void *b);
 
 int main()
 {
-	int i;
+	signed int i;
 
-	int int_array[INT_ARRAY_SIZE] = { 5, 10, 3, 8, 4, 1, 2, 9, 6, 7 };
+	signed int int_array[INT_ARRAY_SIZE] = { 5, 10, 3, 8, 4, 1, 2, 9, 6, 7 };
 	char string_array[STRING_ARRAY_SIZE][MAX_STRING_SIZE] = { "petar", "marko", "zika", "lazar", "radojica", "zivojin" };
 
 	printf("Nesortirani nizovi:\n");
@@ -63,10 +63,10 @@ int main()
  * array: niy koji se sortira                                         *
  * n: veličina niza koji se sortira                                   *
  **********************************************************************/
-void heap_sort_string(char array[][MAX_STRING_SIZE], int n)
+void heap_sort_string(char array[][MAX_STRING_SIZE], signed int n)
 {
 	heap_t heap = heap_from_array(array, n, MAX_STRING_SIZE, cmp_string, print_string);
-	int i;
+	signed int i;
 	for (i = 0; i < n; i++)
 	{
 		heap_extract_min(&heap, &array[i]);
@@ -80,10 +80,10 @@ void heap_sort_string(char array[][MAX_STRING_SIZE], int n)
  * array: niy koji se sortira                                         *
  * n: veličina niza koji se sortira                                   *
  **********************************************************************/
-void heap_sort_int(int array[], int n)
+void heap_sort_int(signed int array[], int n)
 {
-	heap_t heap = heap_from_array(array, n, sizeof(int), cmp, print);
-	int i;
+	heap_t heap = heap_from_array(array, n, sizeof(signed int), cmp, print);
+	signed int i;
 	for (i = 0; i < n; i++)
 	{
 		heap_extract_min(&heap, &array[i]);
@@ -100,9 +100,9 @@ void heap_sort_int(int array[], int n)
  * vraća 0 ako su jenaki, pozitivan broj ako je prvi veći, negativan  *
  * broj inače                                                         *
  **********************************************************************/
-int cmp(const void* a, const void* b)
+signed int cmp(const void* a, const void* b)
 {
-	return *((int*) a) - *((int*) b);
+	return *((signed int*) a) - *((signed int*) b);
 }
 
 /**********************************************************************
@@ -112,7 +112,7 @@ int cmp(const void* a, const void* b)
  **********************************************************************/
 void print(const void* x)
 {
-	printf("%d ", *(int*)x);
+	printf("%d ", *(signed int*)x);
 }
 
 /**********************************************************************
@@ -134,7 +134,7 @@ void print_string(const void *x)
  * vraća 0 ako su jenaki, pozitivan broj ako je prvi veći, negativan  *
  * broj inače                                                         *
  **********************************************************************/
-int cmp_string(const void* a, const void *b)
+signed int cmp_string(const void* a, const void *b)
 {
 	return strcmp(a, b);
 }
