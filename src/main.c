@@ -1,4 +1,24 @@
+/***********************************************************************************************
+ * Autor: Mario Perić, RA14/2015                                                               *
+ *                                                                                             *
+ * Zatak se sastoji iz 2 dela:                                                                 *
+ * 1. Pravljenje statičke biblioteke koja sadrži potrebne funkcije za rukovanje heap-om        *
+ * 2. Programa koji realizuje heap sort, koristeći heap iz statičke biblioteke.                *
+ *                                                                                             *
+ * Kako je potrebno da heap radi za bilo koji tip podataka, heap je realizovan tako da radi sa *
+ * memorijskim lokacijama. Upravo zbog toga pri inicijalizaciji potrebno je, pored maksimalnog *
+ * broja elemenata u heap-u proslediti i širinu jednog elementa (u bajtima), kao i funkcije za *
+ * poređenje i ispis elemenata datog tipa. Ukoliko je u pitanju struktura, funkcija za         *
+ * poređenje treba da poredi po onom atributu, po kojem elementi treba da budu raspoređeni u   *
+ * heap.                                                                                       *
+ *                                                                                             *
+ * U ovom fajlu dat je primer primene statičke biblioteke na tipovima int i string.            *
+ * Veličine podataka, kao i njihova maksimalna količina zavise isključivo od mogućnosti same   *
+ * platforme.                                                                                  *
+ ***********************************************************************************************/
 #include <heap.h>
+#include <stdio.h>
+#include <string.h>
 
 #define MAX_STRING_SIZE 50
 #define INT_ARRAY_SIZE 10

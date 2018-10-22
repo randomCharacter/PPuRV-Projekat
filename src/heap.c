@@ -1,4 +1,7 @@
 #include <heap.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /***************************************************************
  *    Razmenjuje vrednosti na lokcaijama x i y, dužine size.   *

@@ -1,12 +1,7 @@
 #pragma once
 
-#pragma CHECK_MISRA("none")
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdint.h>
-#include <string.h>
-#pragma RESET_MISRA("all")
-
+#include <stdlib.h>
 
 typedef struct heapp_st
 {
