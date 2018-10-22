@@ -125,7 +125,7 @@ uint8_t heap_add(heap_t* heap, void* value)
 
 	while(i != 0 && heap->cmp((char*) heap->array + parent(i) * heap->elem_size, (char*) heap->array + i * heap->elem_size) > 0)
 	{
-		swap(heap->array + i * heap->elem_size, heap->array + parent(i) * heap->elem_size, heap->elem_size);
+		swap((char*)heap->array + i * heap->elem_size, (char*)heap->array + parent(i) * heap->elem_size, heap->elem_size);
 		i = parent(i);
 	}
 	return 1;
@@ -239,7 +239,7 @@ heap_t heap_from_array(void* array, size_t elem_no, size_t size, int (*cmp) (con
 	heap_init(&heap, size, elem_no, cmp, print);
 	for (i = 0; i < elem_no; i++)
 	{
-		heap_add(&heap, array + i * size);
+		heap_add(&heap, (char*) array + i * size);
 	}
 
 	return heap;
